@@ -11,45 +11,41 @@
         android:id="@+id/logo_view"
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:src="@drawable/logo"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/field1"
-        android:paddingVertical="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_below="@id/logo_view">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:id="@+id/login_email"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:src="@drawable/logo"
+        />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/field2"
-        android:paddingVertical="8dp"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_below="@id/field1">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:id="@+id/login_pwd"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textColor="@color/black"
+        android:hint="Email"
+        android:background="@drawable/login_edittext_background"
+        android:padding="12dp"
+        android:layout_below="@id/logo_view"
+        android:id="@+id/login_email"
+        />
+
+    <EditText
+        android:layout_marginVertical="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:hint="Password"
+        android:background="@drawable/login_edittext_background"
+        android:padding="12dp"
+        android:layout_below="@id/login_email"
+        android:id="@+id/login_pwd"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/green"
+        android:background="@drawable/login_button_background"
         android:text="Login"
+        android:textColor="@color/white"
         android:id="@+id/login_btn"
-        android:layout_below="@id/field2"
+        android:layout_below="@id/login_pwd"
         android:padding="16dp"
         android:layout_marginVertical="4dp"
         />
@@ -57,8 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/login_button_background"
         android:backgroundTint="@color/black"
         android:text="Sign Up"
+        android:textColor="@color/white"
         android:id="@+id/signup_btn"
         android:layout_below="@id/login_btn"
         android:padding="16dp"
@@ -70,7 +68,8 @@
         android:text="Forgot password?"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/signup_btn"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        />
 
 
 

@@ -12,6 +12,11 @@
         android:theme="@style/Theme.Spacemate"
         tools:targetApi="31" >
         <activity
+            android:name=".SplashActivity"
+            android:exported="false"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.Spacemate.NoActionBar" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
