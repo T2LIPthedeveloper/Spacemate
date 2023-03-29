@@ -17,9 +17,9 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch(position) {
             case 0:
-                return new new_book_fragment();
-            case 1:
                 return new upcoming_fragment();
+            case 1:
+                return new new_book_fragment();
             case 2:
                 return new bookmarks_fragment();
             default:

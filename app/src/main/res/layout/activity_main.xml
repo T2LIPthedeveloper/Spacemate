@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Spacemate"
         android:layout_alignParentStart="true"
         app:navigationIcon="@drawable/baseline_menu_24"
@@ -19,23 +18,19 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        app:flow_horizontalBias="0.5">
+        android:layout_below="@id/toolbar">
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab1"
-            android:text="UPCOMING" />
+            android:text="Upcoming" />
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab2"
-            android:text="NEW BOOKING" />
+            android:text="New Booking" />
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab3"
-            android:text="FAVOURITES" />
+            android:text="Bookmarks" />
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
@@ -43,8 +38,4 @@
         android:id="@+id/viewPager"
         android:layout_below="@id/tabLayout"
         />
-
-
-
-
 </RelativeLayout>

@@ -9,8 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update with upcoming layout"
-        android:textSize="24dp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:text="Update with bookmarks layout"
+        android:textSize="24dp" />
 
 </RelativeLayout>
