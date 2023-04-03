@@ -1,18 +1,25 @@
 package com.atulparida.spacemate;
 
+import android.content.Context;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder> {
 
-    private Booking[] itemData;
+    List<Booking> itemData;
 
-    public BookingAdapter(Booking[] itemData) {
+    public BookingAdapter(List<Booking> itemData) {
         this.itemData = itemData;
     }
 
@@ -28,23 +35,60 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull BookingAdapter.ViewHolder viewHolder, int position) {
         //TODO: replace with data from Firebase
+        Booking booking = itemData.get(position);
+        viewHolder.capacityNo.setText(booking.parseCapacity());
+        viewHolder.dateOfBooking.setText(booking.parseDate());
+        viewHolder.tableNo.setText(booking.parseTable());
+        viewHolder.timingValues.setText(booking.parseTimings());
+        boolean isVisible = booking.isVisibility();
+        viewHolder.relativeLayout.setVisibility(isVisible? View.VISIBLE : View.GONE);
+        if (isVisible) {
+            viewHolder.relativeLayout.setVisibility(View.VISIBLE);
+            viewHolder.imageButton.setImageResource(R.drawable.baseline_expand_less_24);
+        }
+        else {
+            viewHolder.relativeLayout.setVisibility(View.GONE);
+            viewHolder.imageButton.setImageResource(R.drawable.baseline_expand_more_24);
+        }
+
+
 
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView bookingId;
-        public TextView bookingDate;
+        TextView tableNo;
+        TextView capacityNo;
+        TextView timingValues;
+        TextView dateOfBooking;
+
+        RelativeLayout relativeLayout;
+
+        ImageButton imageButton;
         //TODO: replace with actual format of data
 
         public ViewHolder(View itemView) {
             super(itemView);
+            relativeLayout = itemView.findViewById(R.id.expanded_layout);
+            tableNo = itemView.findViewById(R.id.table_no);
+            capacityNo = itemView.findViewById(R.id.capacity_no);
+            timingValues = itemView.findViewById(R.id.time);
+            dateOfBooking = itemView.findViewById(R.id.date);
+            imageButton = itemView.findViewById(R.id.expand_button);
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Booking book = itemData.get(getAdapterPosition());
+                    book.setVisibility(!book.isVisibility());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return itemData.length;
+        return itemData.size();
     }
 }

@@ -1,13 +1,17 @@
 package com.atulparida.spacemate;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Booking {
-    private String bookingId, startTime, endTime;
-    private Date bookingDate;
+    private String bookingId;
+    private Date bookingDate, startTime, endTime;
     private int tableNo, bookedNo, capacity;
 
-    public Booking(String bookingId, int tableNo, String startTime, String endTime, Date bookingDate, int bookedNo, int capacity) {
+    private boolean visibility;
+
+    public Booking(String bookingId, int tableNo, Date startTime, Date endTime, Date bookingDate, int bookedNo, int capacity, boolean visibility) {
         this.bookingId = bookingId;
         this.tableNo = tableNo;
         this.startTime = startTime;
@@ -15,6 +19,7 @@ public class Booking {
         this.bookingDate = bookingDate;
         this.bookedNo = bookedNo;
         this.capacity = capacity;
+        this.visibility = visibility;
     }
 
     public String getBookingId() {
@@ -25,11 +30,11 @@ public class Booking {
         return tableNo;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
@@ -53,11 +58,11 @@ public class Booking {
         this.tableNo = tableNo;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
@@ -84,5 +89,35 @@ public class Booking {
                 ", bookedNo='" + bookedNo + '\'' +
                 ", capacity='" + capacity + '\'' +
                 '}';
+    }
+
+    public String parseCapacity() {
+        if (capacity == bookedNo)
+            return "Fully booked";
+        else
+            return String.format("Booked %d/%d", bookedNo, capacity);
+    }
+
+    public String parseDate() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(bookingDate);
+    }
+
+    public String parseTable() {
+        return String.format("Table %d", tableNo);
+    }
+
+    public String parseTimings() {
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
+        String start = timeFormatter.format(startTime);
+        String end = timeFormatter.format(endTime);
+        return (start + " to " + end);
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }

@@ -35,18 +35,26 @@ public class upcoming_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upcoming_fragment, container, false);
-        recyclerView = view.findViewById(R.id.recycler_view);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
-        recyclerView.setLayoutManager(layoutManager);
+
         //TODO: replace initData data with call to Firebase to get data
         initData();
+
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+
+
 
         BookingAdapter bookingAdapter = new BookingAdapter(bookedList);
 
         recyclerView.setAdapter(bookingAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        bookingAdapter.notifyDataSetChanged();
 
         return view;
 
@@ -54,11 +62,13 @@ public class upcoming_fragment extends Fragment {
 
     private void initData() {
         bookedList = new ArrayList<>();
-        bookedList.add(new Booking("1000abcd", 2, "9:00 am", "10:00 am", new Date(), 4, 5));
-        bookedList.add(new Booking("1000abcd", 2, "9:00 am", "10:00 am", new Date(), 4, 5));
-        bookedList.add(new Booking("1000abcd", 2, "9:00 am", "10:00 am", new Date(), 4, 5));
-        bookedList.add(new Booking("1000abcd", 2, "9:00 am", "10:00 am", new Date(), 4, 5));
-        bookedList.add(new Booking("1000abcd", 2, "9:00 am", "10:00 am", new Date(), 4, 5));
-
-    }
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        }
 }
