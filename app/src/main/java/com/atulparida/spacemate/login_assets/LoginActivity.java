@@ -15,5 +15,5 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private String Email;
-    private String pass
+    private String pass;
 }
