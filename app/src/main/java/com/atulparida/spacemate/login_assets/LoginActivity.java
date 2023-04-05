@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText EmailEditText, PasswordEditText;
+    private Button LoginButton;
+    private TextView
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
