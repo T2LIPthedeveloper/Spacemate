@@ -2,7 +2,10 @@ package com.atulparida.spacemate.profile_assets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.atulparida.spacemate.R;
@@ -11,37 +14,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
-
-    private ListView listView;
-    private ArrayList<UserListView> itemsList;
-    private List<String> userDataList;
-    int[] userDataIcons = {R.drawable.baseline_account_circle_24, R.drawable.baseline_menu_book_24, R.drawable.baseline_school_24, R.drawable.baseline_home_24, R.drawable.baseline_people_24};
-    String[] headings = {"Email", "Term Information", "Pillar", "Hostel Residency", "Gender"};
+    private EditText term, pillar, hostel, gender;
+    private ImageView termEdit, pillarEdit, hostelEdit, genderEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        listView = (ListView) findViewById(R.id.profile_list_view);
 
-        initUserData();
-
-        ProfileViewAdapter profileViewAdapter = new ProfileViewAdapter(this, R.layout.profile_list_template, itemsList);
-        listView.setAdapter(profileViewAdapter);
-
-
+        initEditTexts();
+        initImageViews();
+        initOnClickListeners();
     }
 
-    private void initUserData() {
-        //TODO: replace with Firebase GET from API
-        //Sample data
-        userDataList.add("person_doe@proton.net");
-        userDataList.add("Term 4");
-        userDataList.add("CSD");
-        userDataList.add("Yes");
-        userDataList.add("Female");
+    private void initOnClickListeners() {
 
-        for (int i = 0; i < 5; i++) {
-            itemsList.add(new UserListView(userDataIcons[i], headings[i], userDataList.get(i)));
+        termEdit.setOnClickListener(v -> {
+            if (term.isEnabled()) {
+                setViewingMode(term);
+            } else {
+                setEditingMode(term, this);
+            }
+        });
+
+        pillarEdit.setOnClickListener(v -> {
+            if (pillar.isEnabled()) {
+                setViewingMode(pillar);
+            } else {
+                setEditingMode(pillar, this);
+            }
+        });
+
+        hostelEdit.setOnClickListener(v -> {
+            if (hostel.isEnabled()) {
+                setViewingMode(hostel);
+            } else {
+                setEditingMode(hostel, this);
+            }
+        });
+
+        genderEdit.setOnClickListener(v -> {
+            if (gender.isEnabled()) {
+                setViewingMode(gender);
+            } else {
+                setEditingMode(gender, this);
+            }
+        });
+    }
+
+    private void initImageViews() {
+        termEdit = findViewById(R.id.termEdit);
+        pillarEdit = findViewById(R.id.pillarEdit);
+        hostelEdit = findViewById(R.id.hostelEdit);
+        genderEdit = findViewById(R.id.genderEdit);
+    }
+
+    private void initEditTexts() {
+        term = findViewById(R.id.termValue);
+        pillar = findViewById(R.id.pillarValue);
+        hostel = findViewById(R.id.hostelValue);
+        gender = findViewById(R.id.genderValue);
+    }
+
+    public static void setViewingMode(final EditText mEditView) {
+        mEditView.setEnabled(false);
+        mEditView.setText(mEditView.getText().toString().trim());
         }
-    }
+
+    public static void setEditingMode(final EditText mEditView, final Context context) {
+        mEditView.setEnabled(true);
+        mEditView.requestFocus();
+        mEditView.setSelection(mEditView.getText().length());
+        }
 }
