@@ -82,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
                 text.setEnabled(false);
                 try {
                     if (term.equals(text)) {
-                        if (!text.getText().toString().isEmpty() && (Integer.parseInt(text.getText().toString()) > 0 && Integer.parseInt(text.getText().toString()) < 8)) {
+                        if (!text.getText().toString().isEmpty() && (Integer.parseInt(text.getText().toString()) > 0 && Integer.parseInt(text.getText().toString()) < 9)) {
                             textViewer.setText(("Term " + term.getText().toString().trim()).trim());
                         }
                         else if (Integer.parseInt(term.getText().toString()) == 9) {
@@ -90,17 +90,17 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     }
                     else if (pillar.equals(text)) {
-                        if (text.getText().toString().trim() == "ASD" || text.getText().toString().trim() == "CSD" || text.getText().toString().trim() == "EPD" || text.getText().toString().trim() == "ESD" || text.getText().toString().trim() == "DAI") {
+                        if (text.getText().toString().trim().equals("ASD") || text.getText().toString().trim().equals("CSD") || text.getText().toString().trim().equals("EPD") || text.getText().toString().trim().equals("ESD") || text.getText().toString().trim().equals("DAI")) {
                             textViewer.setText(text.getText().toString().trim());
                         }
                     }
                     else if (hostel.equals(text)) {
-                        if (text.getText().toString().trim() == "Yes" || text.getText().toString().trim() == "No") {
+                        if (text.getText().toString().trim().equals("Yes") || text.getText().toString().trim().equals("No")) {
                             textViewer.setText(text.getText().toString().trim());
                         }
                     }
                     else if (gender.equals(text)) {
-                        if (text.getText().toString().trim() == "Male" || text.getText().toString().trim() == "Female" || text.getText().toString().trim() == "Other") {
+                        if (text.getText().toString().trim().equals("Male") || text.getText().toString().trim().equals("Female") || text.getText().toString().trim().equals("Other")) {
                             textViewer.setText(text.getText().toString().trim());
                         }
                     }
