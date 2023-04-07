@@ -2,14 +2,19 @@ package com.atulparida.spacemate.settings_assets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.atulparida.spacemate.R;
 import com.atulparida.spacemate.login_assets.LoginActivity;
 import com.atulparida.spacemate.login_assets.SplashActivity;
+
+import java.util.concurrent.Delayed;
 
 public class SettingsFragment extends PreferenceFragment {
 
@@ -80,6 +85,15 @@ public class SettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //TODO: Create help page and set intent
+                needHelpButton.setSummary("Contact @atulisoffline or @ummsorrywhat on Telegram!");
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something here
+                        needHelpButton.setSummary(R.string.help_page_summary);
+                    }
+                }, 5000);
+
                 return true;
             }
         });
@@ -88,6 +102,10 @@ public class SettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //TODO: Create about page and set intent
+                Intent intent = new Intent(preference.getContext(), AboutActivity.class);
+                // startActivity(intent);
+                //To be implemented when the screen's fully built
+                Toast.makeText(preference.getContext(), "Screen to be added!", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
