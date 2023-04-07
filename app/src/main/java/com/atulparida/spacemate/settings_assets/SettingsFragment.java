@@ -18,7 +18,7 @@ import java.util.concurrent.Delayed;
 
 public class SettingsFragment extends PreferenceFragment {
 
-    private Preference masterNotifPreference, upcomingBookings, newSpaces, passwordChangeButton, signOutButton, deleteAccountButton, needHelpButton, aboutButton;
+    private Preference masterNotifPreference, upcomingBookings, newSpaces, passwordChangeButton, signOutButton, deleteAccountButton, needHelpButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,18 +97,6 @@ public class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
-
-        aboutButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                //TODO: Create about page and set intent
-                Intent intent = new Intent(preference.getContext(), AboutActivity.class);
-                // startActivity(intent);
-                //To be implemented when the screen's fully built
-                Toast.makeText(preference.getContext(), "Screen to be added!", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
     }
 
     private void initPreferences() {
@@ -122,6 +110,5 @@ public class SettingsFragment extends PreferenceFragment {
         signOutButton = findPreference(getString(R.string.sign_out_key));
         deleteAccountButton = findPreference(getString(R.string.del_acc_key));
         needHelpButton = findPreference(getString(R.string.help_page_key));
-        aboutButton = findPreference(getString(R.string.about_key));
     }
 }

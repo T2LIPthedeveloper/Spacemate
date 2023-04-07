@@ -36,9 +36,7 @@
     <string name="del_acc_summary">This is non-reversible.</string>
     <string name="help_page_title">Need help?</string>
     <string name="help_page_summary">We have a help section for you right here.</string>
-    <string name="about_summary">Some stuff about us.</string>
     <string name="help_page_key">help_page_key</string>
-    <string name="about_key">about_key</string>
     <string name="del_acc_key">del_acc_key</string>
     <string name="sign_out_key">sign_out_key</string>
     <string name="change_password_key">change_password_key</string>

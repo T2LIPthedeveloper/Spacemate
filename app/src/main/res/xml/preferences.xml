@@ -72,10 +72,6 @@
             android:key="@string/help_page_key"
             android:summary="@string/help_page_summary"/>
 
-        <Preference android:title="About"
-            android:key="@string/about_key"
-            android:summary="@string/about_summary"/>
-
     </PreferenceCategory>
 
 </PreferenceScreen>
