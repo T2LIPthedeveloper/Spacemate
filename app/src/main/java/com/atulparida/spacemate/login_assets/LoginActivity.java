@@ -12,20 +12,19 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText EmailEditText, PasswordEditText;
-    private Button LoginButton;
-    private TextView ForgotPasswordTextView, SignUpTextView, GoogleSignInTextView;
+    private Button LoginButton, SignUpButton;
+    private TextView ForgotPasswordTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EmailEditText = findViewById(R.id.email_edit_text);
-        PasswordEditText = findViewById(R.id.password_edit_text);
-        LoginButton = findViewById(R.id.login_button);
-        ForgotPasswordTextView = findViewById(R.id.forgot_password_text_view);
-        SignUpTextView = findViewById(R.id.sign_up_text_view);
-        GoogleSignInTextView = findViewById(R.id.google_sign_in_text_view);
+        EmailEditText = findViewById(R.id.login_email);
+        PasswordEditText = findViewById(R.id.login_pwd);
+        LoginButton = findViewById(R.id.login_btn);
+        ForgotPasswordTextView = findViewById(R.id.forgot_pwd_btn);
+        SignUpButton = findViewById(R.id.signup_btn);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                 authenticateUser();
             }
         });
-        mForgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+        ForgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open forgot password screen
@@ -43,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        SignUpTextView.setOnClickListener(new View.OnClickListener() {
+        SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open sign up screen
@@ -51,25 +50,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        GoogleSignInTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Authenticate user with Google
-                authenticateUserWithGoogle();
-            }
-        });
-        private void authenticateUser() {
+    }
+    private void authenticateUser() {
             // Get email and password from input fields
-            String email = mEmailEditText.getText().toString().trim();
-            String password = mPasswordEditText.getText().toString().trim();
-
-            // Authenticate user with email and password
+            String email = EmailEditText.getText().toString().trim();
+            String password = PasswordEditText.getText().toString().trim();
         }
 
-        private void authenticateUserWithGoogle() {
-            // Authenticate user with Google
-        }
+    private void authenticateUserWithGoogle() {
+        //TODO: replace with Google user authentication
+    }
 
 
 }
