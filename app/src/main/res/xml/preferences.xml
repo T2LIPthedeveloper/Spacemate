@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--below line is to create preference category-->
+    <PreferenceCategory android:title="Notifications">
+
+        <!--in below line we are creating a list preference
+            and we are adding default selected value in list for 3 rd index-->
+        <!--dialog title is to set title for our dialog box
+            entries is used to add list of data which we
+            are adding from our strings file
+            entry values is to add values to our entries.
+            key is use to add key to our list preferences
+            summary is use to add description to our option
+            title is use to add title to our list preferences.-->
+        <!--this list preference is for remind me option-->
+        <!--
+
+        <ListPreference
+            android:defaultValue="3"
+            android:dialogTitle="@string/remind_to_take_a_break"
+            android:entries="@array/pref_remind_me_to_take_a_break"
+            android:entryValues="@array/pref_duration"
+            android:key="@string/key_upload_quality"
+            android:summary="@string/remind_me"
+            android:title="@string/remind_me" />
+
+        -!>
+
+        <!-on below line we are creating a switch preference
+            default value is use to set switch on or off
+            key is use to set key
+            title is use to add title to our switch-->
+        <!--this switch preference option is to remind for a bed time-->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/enable_notifications"
+            android:title="@string/enable_notifications_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/upcoming_booking_notifications"
+            android:title="@string/upcoming_booking_notifications_title" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/new_spaces_notifications"
+            android:title="@string/new_spaces_notifications_title" />
+
+        <!--below switch preference is
+            use for mobile data usage-->
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Account">
+        <Preference android:title="@string/change_password_title"
+            android:key="@string/change_password_key"
+            android:summary="@string/change_password_summary"/>
+
+        <Preference android:title="@string/sign_out_title"
+            android:key="@string/sign_out_key"
+            android:summary="@string/sign_out_summary"/>
+
+        <Preference android:title="@string/del_acc_title"
+            android:key="@string/del_acc_key"
+            android:summary="@string/del_acc_summary"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About">
+        <Preference android:title="@string/help_page_title"
+            android:key="@string/help_page_key"
+            android:summary="@string/help_page_summary"/>
+
+        <Preference android:title="About"
+            android:key="@string/about_key"
+            android:summary="@string/about_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

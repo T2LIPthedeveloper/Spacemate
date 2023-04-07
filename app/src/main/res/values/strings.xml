@@ -20,4 +20,26 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="enable_notifications">enable_notifications</string>
+    <string name="enable_notifications_title">Enable notifications</string>
+    <string name="upcoming_booking_notifications">upcoming_booking_notifications</string>
+    <string name="upcoming_booking_notifications_title">Upcoming bookings</string>
+    <string name="new_spaces_notifications">new_spaces_notifications</string>
+    <string name="new_spaces_notifications_title">New spaces</string>
+    <string name="change_password_title">Change password</string>
+    <string name="change_password_summary">Change your account password</string>
+    <string name="sign_out_title">Sign out</string>
+    <string name="sign_out_summary">Logs you out of the application</string>
+    <string name="del_acc_title">Delete account</string>
+    <string name="del_acc_summary">This is non-reversible.</string>
+    <string name="help_page_title">Need help?</string>
+    <string name="help_page_summary">We have a help section for you right here.</string>
+    <string name="about_summary">Some stuff about us.</string>
+    <string name="help_page_key">help_page_key</string>
+    <string name="about_key">about_key</string>
+    <string name="del_acc_key">del_acc_key</string>
+    <string name="sign_out_key">sign_out_key</string>
+    <string name="change_password_key">change_password_key</string>
 </resources>
