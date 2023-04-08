@@ -14,14 +14,6 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:id="@+id/upper_lin">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_person_24"
-            android:background="@drawable/profile_background"
-            android:layout_margin="20dp"
-            android:elevation="7dp"
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +58,7 @@
                     android:text="Name"/>
 
                 <EditText
-                    android:id="@+id/nameValue"
+                    android:id="@+id/name_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -159,7 +151,7 @@
                     android:text="Password"/>
 
                 <EditText
-                    android:id="@+id/pwdValue"
+                    android:id="@+id/pwd_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -172,17 +164,17 @@
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
     <Button
+        android:id="@+id/sign_up_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/login_button_background"
-        android:text="Sign Up"
-        android:textSize="20sp"
-        android:layout_margin="30dp"
-        android:textColor="@color/white"
-        android:id="@+id/sign_up_btn"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:background="@drawable/login_button_background"
         android:padding="16dp"
-        />
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 </RelativeLayout>
