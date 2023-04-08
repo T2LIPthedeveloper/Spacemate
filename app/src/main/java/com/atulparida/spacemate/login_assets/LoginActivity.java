@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Open forgot password screen
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -48,8 +49,10 @@ public class LoginActivity extends AppCompatActivity {
                 // Open sign up screen
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+
     }
     private void authenticateUser() {
             // Get email and password from input fields

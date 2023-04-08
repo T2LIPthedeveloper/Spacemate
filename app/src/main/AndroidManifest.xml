@@ -15,18 +15,18 @@
             android:name=".login_assets.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".login_assets.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".profile_assets.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
-            android:exported="false"
+            android:name=".login_assets.SplashActivity"
+            android:exported="true"
             android:label="@string/title_activity_splash"
             android:theme="@style/Theme.Spacemate.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login_assets.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"

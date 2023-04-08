@@ -182,7 +182,7 @@
         android:layout_margin="30dp"
         android:textColor="@color/white"
         android:id="@+id/sign_up_btn"
-        android:layout_below="@id/pwd_card"
+        android:layout_alignParentBottom="true"
         android:padding="16dp"
         />
 </RelativeLayout>
