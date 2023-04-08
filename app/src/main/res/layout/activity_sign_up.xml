@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login_assets.SignUpActivity">
-</RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Name"
+            android:text="Sign Up"
             android:textColor="@color/black"
             android:textSize="40dp"
             android:textStyle="bold"
@@ -39,12 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/upper_lin"
         android:layout_margin="30dp"
-        app:cardCornerRadius="10dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        app:cardCornerRadius="10dp"
+        android:foreground="@drawable/border_outline_foreground"
+        android:id="@+id/name_card">
+        <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -53,27 +50,139 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_account_circle_24"
                 android:padding="10dp"
-                android:id="@+id/??"
+                android:id="@+id/nameIcon"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_toEndOf="@id/emailIcon??"
+                android:layout_toEndOf="@id/nameIcon"
                 android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="Name"/>
+
+                <EditText
+                    android:id="@+id/nameValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="@string/sign_up_username"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_card"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="10dp"
+        android:foreground="@drawable/border_outline_foreground"
+        android:id="@+id/email_card">
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_account_circle_24"
+                android:padding="10dp"
+                android:id="@+id/emailIcon"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/emailIcon"
+                android:padding="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Email"/>
+
+                <EditText
+                    android:id="@+id/email_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="email@example.com"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="John Doe"
-                    android:id="@+id/nameValue"/>
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_card"
+        android:id="@+id/pwd_card"
+        android:layout_margin="30dp"
+        android:foreground="@drawable/border_outline_foreground"
+        app:cardCornerRadius="10dp">
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_account_circle_24"
+                android:padding="10dp"
+                android:id="@+id/pwdIcon"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/pwdIcon"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Password"/>
+
+                <EditText
+                    android:id="@+id/pwdValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_button_background"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        android:layout_margin="30dp"
+        android:textColor="@color/white"
+        android:id="@+id/sign_up_btn"
+        android:layout_below="@id/pwd_card"
+        android:padding="16dp"
+        />
+</RelativeLayout>
