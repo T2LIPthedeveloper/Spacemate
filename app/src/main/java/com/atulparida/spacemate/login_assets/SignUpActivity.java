@@ -2,6 +2,7 @@ package com.atulparida.spacemate.login_assets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.BlendMode;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,8 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.atulparida.spacemate.MainActivity;
 import com.atulparida.spacemate.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -43,6 +49,57 @@ public class SignUpActivity extends AppCompatActivity {
         initElements();
         signUpButton.setEnabled(false);
         signUpButton.setAlpha(0.5f);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean valid_name = checkNameValid();
+                boolean valid_pwd = checkPwdValid();
+                boolean valid_email = checkEmailValid();
+                if (valid_name && valid_email && valid_pwd) {
+                    Toast.makeText(getApplicationContext(), "Successfully signed up!", Toast.LENGTH_SHORT).show();
+                    //TODO: Pass data to user object
+
+                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+                else if (!valid_name) {
+                    Toast.makeText(getApplicationContext(), "Invalid name!", Toast.LENGTH_SHORT).show();
+                }
+                else if (!valid_email) {
+                    Toast.makeText(getApplicationContext(), "Invalid email!", Toast.LENGTH_SHORT).show();
+                }
+                else if (!valid_pwd) {
+                    Toast.makeText(getApplicationContext(), "Invalid password!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private boolean checkEmailValid() {
+        String target = emailInput.getText().toString().trim();
+        if (target.equals(null))
+            return false;
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    private boolean checkPwdValid() {
+        String password = passwordInput.getText().toString().trim();
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+    }
+
+    private boolean checkNameValid() {
+        if (nameInput.getText().toString().trim().equals(""))
+            return false;
+        return true;
     }
 
     private void initElements() {
