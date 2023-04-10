@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,6 +51,15 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
             viewHolder.relativeLayout.setVisibility(View.GONE);
             viewHolder.imageButton.setImageResource(R.drawable.baseline_expand_more_24);
         }
+        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int actualPos = viewHolder.getAdapterPosition();
+                itemData.remove(actualPos);
+                notifyItemRemoved(actualPos);
+                notifyItemRangeChanged(actualPos, itemData.size());
+            }
+        });
 
 
 
@@ -65,6 +75,8 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
         RelativeLayout relativeLayout;
 
         ImageButton imageButton;
+
+        ImageButton deleteButton;
         //TODO: replace with actual format of data
 
         public ViewHolder(View itemView) {
@@ -83,6 +95,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
                     notifyItemChanged(getAdapterPosition());
                 }
             });
+            deleteButton = itemView.findViewById(R.id.delete_booking_btn);
 
         }
     }

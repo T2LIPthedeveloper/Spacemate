@@ -2,10 +2,12 @@ package com.atulparida.spacemate;
 
 import android.media.Image;
 import android.net.Uri;
+import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Location {
+public class Location implements Serializable {
     private Uri uri;
     private String name;
     private boolean isFavourite;
@@ -49,5 +51,22 @@ public class Location {
 
     public void setFavourite(boolean favourite) {
         isFavourite = favourite;
+    }
+
+    public String getParsedCapacity() {
+        if (max_capacity == currentlyFilled) {
+            return "Location full";
+        }
+        else {
+            return String.format("%d/%d", currentlyFilled, max_capacity);
+        }
+    }
+
+    public Uri getUri() {
+        return uri;
+    }
+
+    public void setUri(Uri uri) {
+        this.uri = uri;
     }
 }

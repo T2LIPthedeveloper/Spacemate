@@ -1,12 +1,17 @@
 package com.atulparida.spacemate;
 
-public class Table {
+import java.io.Serializable;
+
+public class Table implements Serializable {
     private int capacity;
     private int currentlyFilled;
 
-    public Table(int capacity) {
+    private String tableName;
+
+    public Table(String tableName, int capacity) {
         this.capacity = capacity;
         this.currentlyFilled = 0;
+        this.tableName = tableName;
     }
 
     public int getCapacity() {

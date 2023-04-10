@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Spacemate"
         tools:targetApi="31">
         <activity
+            android:name=".CommonLocationActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile_assets.ProfileActivity"
             android:exported="true" />
         <activity
