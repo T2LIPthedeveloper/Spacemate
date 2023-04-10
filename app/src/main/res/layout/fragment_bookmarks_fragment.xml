@@ -5,24 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".booking_tabs.bookmarks_fragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bm_frag">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/location_card_template"
         android:layout_height="match_parent"
+        android:id="@+id/bookmarks_recycler"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update with bookmarks layout"
-                android:textSize="24sp"
-                android:layout_centerInParent="true"/>
-        </LinearLayout>
     </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

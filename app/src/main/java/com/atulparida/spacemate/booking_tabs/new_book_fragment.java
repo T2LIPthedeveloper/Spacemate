@@ -73,3 +73,4 @@ public class new_book_fragment extends Fragment {
         locationArrayList.add(location);
     }
 }
+

@@ -16,12 +16,14 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
 
+import com.atulparida.spacemate.booking_tabs.bookmarks_fragment;
+import com.atulparida.spacemate.booking_tabs.new_book_fragment;
 import com.atulparida.spacemate.booking_tabs.upcoming_fragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
@@ -65,5 +67,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    }
+}
 
