@@ -1,0 +1,11 @@
+<resources>
+    <!-- Other styles -->
+
+    <style name="CustomDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>

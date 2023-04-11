@@ -1,0 +1,22 @@
+<resources>
+    <array name="table_options">
+        <item>Table 1</item>
+        <item>Table 2</item>
+        <item>Table 3</item>
+        <!-- add more items as needed -->
+    </array>
+
+        <array name="date_options">
+            <item>Date 1</item>
+            <item>Date 2</item>
+            <item>Date 3</item>
+            <!-- add more items as needed -->
+        </array>
+
+        <array name="time_options">
+            <item>Time 1</item>
+            <item>Time 2</item>
+            <item>Time 3</item>
+            <!-- add more items as needed -->
+        </array>
+</resources>
