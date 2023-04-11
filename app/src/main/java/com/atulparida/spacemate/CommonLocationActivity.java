@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,17 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.atulparida.spacemate.booking_tabs.upcoming_fragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -65,6 +77,8 @@ public class CommonLocationActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener setDateListener;
 
+    private FirebaseFirestore db;
+
     int i = 0, val;
 
 
@@ -77,6 +91,7 @@ public class CommonLocationActivity extends AppCompatActivity {
         if (bundle != null) {
             bookingLoc = (Location) bundle.getSerializable("location");
         }
+        db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_common_location);
         booking.setBookingId(String.valueOf((Math.random() * 1000000 + 100000)));
         initUI();
@@ -282,10 +297,12 @@ public class CommonLocationActivity extends AppCompatActivity {
                     Toast.makeText(CommonLocationActivity.this, "Please select table", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("booking", booking);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("booking", booking);
+                    makeBooking();
                     Intent intent = new Intent(CommonLocationActivity.this, MainActivity.class);
-                    intent.putExtras(bundle);
+
+//                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
                 }
@@ -385,6 +402,27 @@ public class CommonLocationActivity extends AppCompatActivity {
         else {
             throw new RuntimeException("Unknown radio button clicked!");
         }
+    }
+
+    public void makeBooking() {
+        CollectionReference bookingCollection = db.collection("Bookings");
+        DocumentReference bookingRef = bookingCollection.document();
+        booking.setName(name.getText().toString());
+        booking.setBookingId(bookingRef.getId());
+
+        bookingRef.set(booking)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Spacemate", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Spacemate", "Error writing document", e);
+                    }
+                });
     }
 }
 
