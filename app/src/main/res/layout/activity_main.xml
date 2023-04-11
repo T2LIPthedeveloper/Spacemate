@@ -5,15 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <androidx.appcompat.widget.Toolbar
+    <Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:title="Spacemate"
-        android:layout_alignParentStart="true"
-        app:navigationIcon="@drawable/baseline_menu_24"
+        android:minHeight="?android:attr/actionBarSize"
         android:id="@+id/toolbar"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:padding="10dp"
+            android:src="@drawable/baseline_settings_24"
+            android:id="@+id/settings_icon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spacemate"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_icon"
+            android:layout_gravity="right|center_vertical"
+            android:padding="10dp"
+            android:id="@+id/profile_icon"/>
+    </Toolbar>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"

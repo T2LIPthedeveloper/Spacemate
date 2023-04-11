@@ -16,10 +16,13 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.widget.ImageView;
 
 import com.atulparida.spacemate.booking_tabs.bookmarks_fragment;
 import com.atulparida.spacemate.booking_tabs.new_book_fragment;
 import com.atulparida.spacemate.booking_tabs.upcoming_fragment;
+import com.atulparida.spacemate.profile_assets.ProfileActivity;
+import com.atulparida.spacemate.settings_assets.SettingsActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -41,6 +44,19 @@ public class MainActivity extends AppCompatActivity{
         viewPager2 = findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(this, bundle);
         viewPager2.setAdapter(viewPagerAdapter);
+
+        ImageView profileIcon = findViewById(R.id.profile_icon);
+        ImageView settingsIcon = findViewById(R.id.settings_icon);
+
+        profileIcon.setOnClickListener(v -> {
+            Intent intent1 = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent1);
+        });
+
+        settingsIcon.setOnClickListener(v -> {
+            Intent intent1 = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent1);
+        });
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

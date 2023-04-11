@@ -3,6 +3,7 @@ package com.atulparida.spacemate;
 import android.content.Context;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHolder> {
 
     List<Booking> itemData;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public BookingAdapter(List<Booking> itemData) {
         this.itemData = itemData;
@@ -55,14 +61,31 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 int actualPos = viewHolder.getAdapterPosition();
+                deleteBooking(actualPos);
                 itemData.remove(actualPos);
                 notifyItemRemoved(actualPos);
                 notifyItemRangeChanged(actualPos, itemData.size());
             }
         });
 
+    }
 
-
+    private void deleteBooking(int index) {
+        String docref = itemData.get(index).getBookingId();
+        db.collection("Bookings").document(docref)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Spacemate", "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Spacemate", "Error deleting document", e);
+                    }
+                });
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

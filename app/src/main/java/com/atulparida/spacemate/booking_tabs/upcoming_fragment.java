@@ -2,12 +2,26 @@ package com.atulparida.spacemate.booking_tabs;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +40,12 @@ public class upcoming_fragment extends Fragment {
     List<Booking> bookedList;
 
     private Bundle bundle;
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = FirebaseFirestore.getInstance();
         //get bundle argument
         Bundle b = getArguments();
         this.bundle = b;
@@ -46,31 +62,38 @@ public class upcoming_fragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
 
-        //TODO: replace initData data with call to Firebase to get data
-        initData();
+         db.collection("Bookings")
+                 .whereEqualTo("name", "nic")
+                .whereGreaterThan("bookingDate", new Date())
+                .orderBy("bookingDate")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            if (task.isSuccessful()) {
+                bookedList = new ArrayList<>();
+                Log.d("Spacemate", "yes we read something");
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Log.d("Spacemate", document.getId() + " => " + document.getData());
+                    Booking booking = document.toObject(Booking.class);
+                    bookedList.add(booking);
+                }
+                recyclerView = view.findViewById(R.id.recycler_view);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setHasFixedSize(true);
 
-        recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+                BookingAdapter bookingAdapter = new BookingAdapter(bookedList);
 
-
-        BookingAdapter bookingAdapter = new BookingAdapter(bookedList);
-
-        recyclerView.setAdapter(bookingAdapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        bookingAdapter.notifyDataSetChanged();
-
-        return view;
-
-    }
-
-    private void initData() {
-        bookedList = new ArrayList<>();
-        if (bundle != null) {
-            Booking booking = (Booking) bundle.getSerializable("booking");
-            if (booking != null) {
-                bookedList.add(booking);
+                recyclerView.setAdapter(bookingAdapter);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                bookingAdapter.notifyDataSetChanged();
+            } else {
+                Log.d("Spacemate", "Error getting documents: ", task.getException());
             }
         }
+    });
+         return view;
+
     }
+
 }
