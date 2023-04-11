@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.util.Log;
+import java.util.HashMap;
+import java.util.Map;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 
 import com.atulparida.spacemate.MainActivity;
 import com.atulparida.spacemate.R;
@@ -20,10 +24,24 @@ import com.atulparida.spacemate.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUpActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+
+public class SignUpActivity extends AppCompatActivity {
+    public static final String TAG = "TAG";
     private EditText nameInput, emailInput, passwordInput;
     private Button signUpButton;
+    String userID;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
 
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -46,6 +64,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
         initElements();
         signUpButton.setEnabled(false);
         signUpButton.setAlpha(0.5f);
@@ -57,8 +77,37 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean valid_pwd = checkPwdValid();
                 boolean valid_email = checkEmailValid();
                 if (valid_name && valid_email && valid_pwd) {
+                    final String fullName = nameInput.getText().toString();
+                    final String email = emailInput.getText().toString().trim();
+                    String password = passwordInput.getText().toString().trim();
+
                     Toast.makeText(getApplicationContext(), "Successfully signed up!", Toast.LENGTH_SHORT).show();
-                    //TODO: Pass data to user object
+                    //TODO : Send User Data To Firebase
+                    System.out.println(email);
+                    System.out.println(password);
+                    System.out.println(fullName);
+                    fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                userID = fAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fStore.collection("users").document(userID);
+                    Map<String,Object> user = new HashMap<>();
+                    user.put("fName",fullName);
+                    user.put("email",email);
+
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "onFailure: " + e.toString());
+                        }
+                    });
+                    }}});
 
                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                     startActivity(intent);

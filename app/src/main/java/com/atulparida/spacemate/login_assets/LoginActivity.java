@@ -2,6 +2,8 @@ package com.atulparida.spacemate.login_assets;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.atulparida.spacemate.MainActivity;
 import com.atulparida.spacemate.R;
 import android.content.Intent;
 import android.text.Editable;
@@ -12,11 +14,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText EmailEditText, PasswordEditText;
     private Button LoginButton, SignUpButton;
     private TextView ForgotPasswordTextView;
+
+    private FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
 
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -49,11 +72,15 @@ public class LoginActivity extends AppCompatActivity {
         ForgotPasswordTextView = findViewById(R.id.forgot_pwd_btn);
         SignUpButton = findViewById(R.id.signup_btn);
 
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Authenticate user with email and password
-                authenticateUser();
+                authenticateUserWithGoogle();
             }
         });
         LoginButton.setEnabled(false);
@@ -85,21 +112,35 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     private void authenticateUserWithGoogle() {
-        //TODO: replace with Google user authentication
+
+        String email = EmailEditText.getText().toString().trim();
+        String password = PasswordEditText.getText().toString().trim();
+        fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
     }
 
-    private void checkFieldsForEmptyValues(){
-        String s1 = EmailEditText.getText().toString();
-        String s2 = PasswordEditText.getText().toString();
+            private void checkFieldsForEmptyValues() {
+                String s1 = EmailEditText.getText().toString();
+                String s2 = PasswordEditText.getText().toString();
 
-        if (s1.length() > 0 && s2.length() > 0) {
-            LoginButton.setEnabled(true);
-            LoginButton.setAlpha(1f);
+                if (s1.length() > 0 && s2.length() > 0) {
+                    LoginButton.setEnabled(true);
+                    LoginButton.setAlpha(1f);
 
-        } else {
-            LoginButton.setEnabled(false);
+                } else {
+                    LoginButton.setEnabled(false);
+                }
+            }
+
+
         }
-    }
-
-
-}
