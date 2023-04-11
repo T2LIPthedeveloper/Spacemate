@@ -3,6 +3,7 @@ package com.atulparida.spacemate;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.VH>{
         holder.bookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("location", location);
                 Intent intent = new Intent(holder.context, CommonLocationActivity.class);
-                intent.putExtra("serialLocation", location);
+                intent.putExtras(bundle);
                 //Pass current location through to activity if clicked
                 holder.context.startActivity(intent);
 

@@ -22,6 +22,17 @@ public class Booking {
         this.visibility = visibility;
     }
 
+    public Booking() {
+        this.bookingId = null;
+        this.tableNo = 0;
+        this.startTime = null;
+        this.endTime = null;
+        this.bookingDate = null;
+        this.bookedNo = 0;
+        this.capacity = 0;
+        this.visibility = false;
+    }
+
     public String getBookingId() {
         return bookingId;
     }
