@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "40070318883",
+    "project_id": "spacemate-f8b67",
+    "storage_bucket": "spacemate-f8b67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40070318883:android:898324d546516b2c29da96",
+        "android_client_info": {
+          "package_name": "com.atulparida.spacemate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40070318883-c16to4cbu0rnvuc4skctnptpioo84vv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atulparida.spacemate",
+            "certificate_hash": "b6be1f11c621e52a96e9b20c587ba81146700831"
+          }
+        },
+        {
+          "client_id": "40070318883-gomc7fcuh9chsi3425eqp8070hde3tq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMHOLUMY57-ta5T8-64zq1vFjWH9P8c6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40070318883-gomc7fcuh9chsi3425eqp8070hde3tq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
