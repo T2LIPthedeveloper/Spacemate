@@ -113,6 +113,7 @@
                 android:padding="10dp"
                 android:minHeight="48dp"
                 android:background="@drawable/booking_spinner_background"
+                android:popupBackground="@drawable/login_edittext_background"
                 android:id="@+id/tableSpinner"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -122,13 +123,15 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:padding="10dp"/>
-            <Spinner
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:minHeight="48dp"
-                android:background="@drawable/booking_spinner_background"
-                android:id="@+id/dateSpinner"/>
+                android:hint="Select a date"
+                android:textSize="20sp"
+                android:background="@drawable/login_edittext_background"
+                android:id="@+id/dateSelect"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,13 +140,15 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:padding="10dp"/>
-            <Spinner
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:minHeight="48dp"
-                android:background="@drawable/booking_spinner_background"
-                android:id="@+id/startTimeSpinner"/>
+                android:hint="Select start time"
+                android:textSize="20sp"
+                android:background="@drawable/login_edittext_background"
+                android:id="@+id/startTimeSelect"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,13 +157,15 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:padding="10dp"/>
-            <Spinner
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:minHeight="48dp"
-                android:background="@drawable/booking_spinner_background"
-                android:id="@+id/endTimeSpinner"/>
+                android:hint="Select end time"
+                android:textSize="20sp"
+                android:background="@drawable/login_edittext_background"
+                android:id="@+id/endTimeSelect"/>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

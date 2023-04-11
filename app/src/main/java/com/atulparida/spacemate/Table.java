@@ -30,4 +30,12 @@ public class Table implements Serializable {
         if (currentlyFilled <= capacity)
             this.currentlyFilled = currentlyFilled;
     }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
 }

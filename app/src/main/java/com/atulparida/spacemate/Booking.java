@@ -1,10 +1,11 @@
 package com.atulparida.spacemate;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Booking {
+public class Booking implements Serializable {
     private String bookingId;
     private Date bookingDate, startTime, endTime;
     private int tableNo, bookedNo, capacity;

@@ -12,6 +12,15 @@ public class Location implements Serializable {
     private String name;
     private boolean isFavourite;
     private int max_capacity, currentlyFilled;
+
+    public List<Table> getTableList() {
+        return tableList;
+    }
+
+    public void setTableList(List<Table> tableList) {
+        this.tableList = tableList;
+    }
+
     private List<Table> tableList;
 
     public String getName() {
