@@ -26,6 +26,9 @@
             android:name=".settings_assets.SettingsActivity"
             android:exported="true" />
         <activity
+            android:name=".CommonLocationActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile_assets.ProfileActivity"
             android:exported="true" />
         <activity

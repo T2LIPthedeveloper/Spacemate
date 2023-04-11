@@ -25,9 +25,15 @@ public class upcoming_fragment extends Fragment {
     private RecyclerView recyclerView;
     List<Booking> bookedList;
 
+    private Bundle bundle;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //get bundle argument
+        Bundle b = getArguments();
+        this.bundle = b;
+
     }
 
     @Override
@@ -48,8 +54,6 @@ public class upcoming_fragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-
-
         BookingAdapter bookingAdapter = new BookingAdapter(bookedList);
 
         recyclerView.setAdapter(bookingAdapter);
@@ -62,13 +66,11 @@ public class upcoming_fragment extends Fragment {
 
     private void initData() {
         bookedList = new ArrayList<>();
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
-        bookedList.add(new Booking("1000abcd", 2, new Date(), new Date(), new Date(), 4, 5, false));
+        if (bundle != null) {
+            Booking booking = (Booking) bundle.getSerializable("booking");
+            if (booking != null) {
+                bookedList.add(booking);
+            }
         }
+    }
 }
