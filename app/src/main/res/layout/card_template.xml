@@ -120,6 +120,20 @@
                 android:id="@+id/date"
                 android:layout_below="@id/time_text"
                 />
+
+            <Button
+                android:id="@+id/book_now_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/login_button_background"
+                android:width="40dp"
+                android:text="Book Now"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

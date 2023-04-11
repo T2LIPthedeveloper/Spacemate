@@ -6,12 +6,15 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import com.atulparida.spacemate.booking_tabs.booking_fragment;
 
 import java.util.List;
 
@@ -51,6 +54,14 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
             viewHolder.imageButton.setImageResource(R.drawable.baseline_expand_more_24);
         }
 
+        viewHolder.bookNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                booking_fragment bookingMenuDialog = new booking_fragment();
+                bookingMenuDialog.show(((FragmentActivity) viewHolder.itemView.getContext()).getSupportFragmentManager(), "BookingMenuDialog");
+            }
+        });
+
 
 
     }
@@ -63,6 +74,8 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
         TextView dateOfBooking;
 
         RelativeLayout relativeLayout;
+
+        Button bookNowButton;
 
         ImageButton imageButton;
         //TODO: replace with actual format of data
@@ -83,7 +96,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
                     notifyItemChanged(getAdapterPosition());
                 }
             });
-
+            bookNowButton = itemView.findViewById(R.id.book_now_button);
         }
     }
 

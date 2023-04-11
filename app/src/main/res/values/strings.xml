@@ -20,4 +20,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="table_prompt">Select a table:</string>
+    <string name="date_prompt">Select a date:</string>
+    <string name="start_time_prompt">Select a start time:</string>
+    <string name="end_time_prompt">Select an end time:</string>
 </resources>
