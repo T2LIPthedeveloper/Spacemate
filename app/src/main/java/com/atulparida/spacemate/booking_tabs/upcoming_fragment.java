@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,11 +42,15 @@ public class upcoming_fragment extends Fragment {
 
     private Bundle bundle;
     private FirebaseFirestore db;
+    private FirebaseAuth fAuth;
+    private String userEmail;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        userEmail = fAuth.getCurrentUser().getEmail();
         //get bundle argument
         Bundle b = getArguments();
         this.bundle = b;
@@ -63,7 +68,7 @@ public class upcoming_fragment extends Fragment {
 
 
          db.collection("Bookings")
-                 .whereEqualTo("name", "nic")
+                 .whereEqualTo("name", userEmail)
                 .whereGreaterThan("bookingDate", new Date())
                 .orderBy("bookingDate")
                 .get()
@@ -72,7 +77,6 @@ public class upcoming_fragment extends Fragment {
         public void onComplete(@NonNull Task<QuerySnapshot> task) {
             if (task.isSuccessful()) {
                 bookedList = new ArrayList<>();
-                Log.d("Spacemate", "yes we read something");
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Log.d("Spacemate", document.getId() + " => " + document.getData());
                     Booking booking = document.toObject(Booking.class);

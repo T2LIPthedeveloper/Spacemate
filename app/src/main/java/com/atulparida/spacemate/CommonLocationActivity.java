@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.atulparida.spacemate.booking_tabs.upcoming_fragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -78,6 +79,8 @@ public class CommonLocationActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener setDateListener;
 
     private FirebaseFirestore db;
+    private FirebaseAuth fAuth;
+    private String userEmail;
 
     int i = 0, val;
 
@@ -92,8 +95,10 @@ public class CommonLocationActivity extends AppCompatActivity {
             bookingLoc = (Location) bundle.getSerializable("location");
         }
         db = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        userEmail = fAuth.getCurrentUser().getEmail();
         setContentView(R.layout.activity_common_location);
-        booking.setBookingId(String.valueOf((Math.random() * 1000000 + 100000)));
+        //booking.setBookingId(String.valueOf((Math.random() * 1000000 + 100000)));
         initUI();
         initialiseValues();
         initListeners();
@@ -407,7 +412,7 @@ public class CommonLocationActivity extends AppCompatActivity {
     public void makeBooking() {
         CollectionReference bookingCollection = db.collection("Bookings");
         DocumentReference bookingRef = bookingCollection.document();
-        booking.setName(name.getText().toString());
+        booking.setName(userEmail);
         booking.setBookingId(bookingRef.getId());
 
         bookingRef.set(booking)
