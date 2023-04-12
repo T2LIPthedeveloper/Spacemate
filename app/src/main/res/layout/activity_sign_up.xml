@@ -66,6 +66,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </RelativeLayout>
@@ -113,6 +114,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </RelativeLayout>
@@ -160,6 +162,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </RelativeLayout>

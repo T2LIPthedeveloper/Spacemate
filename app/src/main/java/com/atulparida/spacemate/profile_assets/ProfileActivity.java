@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -13,28 +15,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+
+
 import com.atulparida.spacemate.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     private EditText term, pillar, hostel, gender;
-    private TextView termViewer, pillarViewer, hostelViewer, genderViewer;
+    private TextView nameViewer, emailViewer, termViewer, pillarViewer, hostelViewer, genderViewer;
     private ViewSwitcher termVS, pillarVS, hostelVS, genderVS;
     private ImageView termEdit, pillarEdit, hostelEdit, genderEdit;
 
+    private Button saveButton;
+
     private InputMethodManager imm;
+
+    private FirebaseFirestore fStore;
+    private FirebaseAuth fAuth;
+    private DocumentReference documentReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
+        fStore = FirebaseFirestore.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+        documentReference = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         initEditTexts();
         initTextViews();
         initVS();
         initImageViews();
+        saveButton = findViewById(R.id.saveButton);
         initOnClickListeners();
     }
 
@@ -50,6 +67,10 @@ public class ProfileActivity extends AppCompatActivity {
         pillarViewer = findViewById(R.id.pillarValueViewer);
         hostelViewer = findViewById(R.id.hostelValueViewer);
         genderViewer = findViewById(R.id.genderValueViewer);
+        nameViewer = findViewById(R.id.nameValue);
+        //TODO: get name from Firestore instance based on user value
+        emailViewer = findViewById(R.id.emailValue);
+        emailViewer.setText(fAuth.getCurrentUser().getEmail());
     }
 
     private void initOnClickListener(ImageView itemEdit, TextView textViewer, ViewSwitcher vs, EditText text) {
@@ -108,6 +129,12 @@ public class ProfileActivity extends AppCompatActivity {
                 catch (Exception e) {
                     Toast.makeText(ProfileActivity.this, "Invalid value", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: Save to database
             }
         });
     }

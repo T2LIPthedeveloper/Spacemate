@@ -33,6 +33,7 @@
             android:textSize="40dp"
             android:textStyle="bold"
             android:paddingBottom="10dp"
+            android:id="@+id/nameValue"
             />
     </LinearLayout>
     <androidx.cardview.widget.CardView
@@ -347,6 +348,16 @@
                     android:src="@drawable/baseline_edit_24"
                     tools:ignore="SpeakableTextPresentCheck" />
             </RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/login_button_background"
+                android:text="Save Changes"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:id="@+id/saveButton"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
