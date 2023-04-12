@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Location implements Serializable {
-    private Uri uri;
+    private int imgResource;
     private String name;
     private boolean isFavourite;
     private int max_capacity, currentlyFilled;
@@ -35,10 +35,10 @@ public class Location implements Serializable {
         return currentlyFilled;
     }
 
-    public Location(String name, List<Table> tableList, Uri uri) {
+    public Location(String name, List<Table> tableList, int imgResource) {
         this.name = name;
         this.tableList = tableList;
-        this.uri = uri;
+        this.imgResource = imgResource;
 
         this.currentlyFilled = 0;
         this.max_capacity = 0;
@@ -71,11 +71,11 @@ public class Location implements Serializable {
         }
     }
 
-    public Uri getUri() {
-        return uri;
+    public int getImgResource() {
+        return imgResource;
     }
 
-    public void setUri(Uri uri) {
-        this.uri = uri;
+    public void setImgResource(int imgResource) {
+        this.imgResource = imgResource;
     }
 }

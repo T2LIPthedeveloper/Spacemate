@@ -35,7 +35,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.VH>{
     public void onBindViewHolder(@NonNull FavouriteAdapter.VH holder, int position) {
         Location location = itemList.get(position);
         holder.locationOccupancy.setText(location.getParsedCapacity());
-        holder.locationImage.setImageURI(location.getUri());
+        holder.locationImage.setImageResource(location.getImgResource());
         holder.bookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

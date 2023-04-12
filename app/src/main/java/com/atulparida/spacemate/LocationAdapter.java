@@ -39,7 +39,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.VH>{
     public void onBindViewHolder(@NonNull LocationAdapter.VH holder, int position) {
         Location location = locationList.get(position);
         holder.locationOccupancy.setText(location.getParsedCapacity());
-        holder.locationImage.setImageURI(location.getUri());
+        holder.locationImage.setImageResource(location.getImgResource());
         holder.bookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

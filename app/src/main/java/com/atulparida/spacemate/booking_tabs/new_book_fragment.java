@@ -69,7 +69,7 @@ public class new_book_fragment extends Fragment {
         tableList.add(new Table("Table 15", 4));
 
 
-        Location location = new Location("Outside Albert Hong LT", tableList, null);
+        Location location = new Location("Outside Albert Hong LT", tableList, R.drawable.img_albert_hong1);
         locationArrayList.add(location);
     }
 }
