@@ -6,14 +6,15 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Booking implements Serializable {
-    private String bookingId, name;
+    private String bookingId, name, location;
     private Date bookingDate, startTime, endTime;
     private int tableNo, bookedNo, capacity;
 
     private boolean visibility;
 
-    public Booking(String bookingId, String name, int tableNo, Date startTime, Date endTime, Date bookingDate, int bookedNo, int capacity, boolean visibility) {
+    public Booking(String bookingId, String location, String name, int tableNo, Date startTime, Date endTime, Date bookingDate, int bookedNo, int capacity, boolean visibility) {
         this.name = name;
+        this.location = location;
         this.bookingId = bookingId;
         this.tableNo = tableNo;
         this.startTime = startTime;
@@ -26,6 +27,7 @@ public class Booking implements Serializable {
 
     public Booking() {
         this.bookingId = null;
+        this.location = null;
         this.tableNo = 0;
         this.startTime = null;
         this.endTime = null;
@@ -38,6 +40,8 @@ public class Booking implements Serializable {
     public String getBookingId() {
         return bookingId;
     }
+
+    public String getLocation() {return location;}
 
     public String getName() {return name;}
 
@@ -69,6 +73,7 @@ public class Booking implements Serializable {
         this.bookingId = bookingId;
     }
     public void setName(String name) {this.name = name;}
+    public void setLocation(String location) {this.location = location;}
 
     public void setTableNo(int tableNo) {
         this.tableNo = tableNo;

@@ -61,7 +61,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 int actualPos = viewHolder.getAdapterPosition();
-                deleteBooking(actualPos);
+                DatabaseCall.deleteBooking(itemData, actualPos, db);
                 itemData.remove(actualPos);
                 notifyItemRemoved(actualPos);
                 notifyItemRangeChanged(actualPos, itemData.size());
@@ -70,23 +70,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
 
     }
 
-    private void deleteBooking(int index) {
-        String docref = itemData.get(index).getBookingId();
-        db.collection("Bookings").document(docref)
-                .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Spacemate", "DocumentSnapshot successfully deleted!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Spacemate", "Error deleting document", e);
-                    }
-                });
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
