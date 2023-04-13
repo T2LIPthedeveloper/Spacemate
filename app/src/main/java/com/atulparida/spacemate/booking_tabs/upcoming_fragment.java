@@ -66,10 +66,11 @@ public class upcoming_fragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
-
+        Date today = new Date();
+        Date yesterday = new Date(today.getTime() - (1000 * 60 * 60 * 24));
          db.collection("Bookings")
                  .whereEqualTo("name", userEmail)
-                .whereGreaterThan("bookingDate", new Date())
+                .whereGreaterThan("bookingDate", yesterday)
                 .orderBy("bookingDate")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
