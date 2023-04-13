@@ -60,6 +60,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        if (fAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+
+
+
         setContentView(R.layout.activity_login);
 
         EmailEditText = findViewById(R.id.login_email);
@@ -72,8 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         ForgotPasswordTextView = findViewById(R.id.forgot_pwd_btn);
         SignUpButton = findViewById(R.id.signup_btn);
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+
 
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
