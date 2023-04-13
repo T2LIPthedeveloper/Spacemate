@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity{
         viewPager2 = findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(this, bundle);
         viewPager2.setAdapter(viewPagerAdapter);
+        viewPager2.post(() -> viewPager2.setCurrentItem(1));
 
         ImageView profileIcon = findViewById(R.id.profile_icon);
         ImageView settingsIcon = findViewById(R.id.settings_icon);

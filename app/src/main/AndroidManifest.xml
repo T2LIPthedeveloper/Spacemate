@@ -20,7 +20,7 @@
             android:name=".login_assets.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".settings_assets.AboutActivity"
             android:exported="false" />
         <activity
             android:name=".settings_assets.SettingsActivity"
@@ -34,7 +34,8 @@
         <activity
             android:name=".login_assets.SplashActivity"
             android:exported="true"
-            android:label="@string/title_activity_splash"
+            android:label="@string/app_name"
+            android:icon="@drawable/logo"
             android:theme="@style/Theme.Spacemate.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
