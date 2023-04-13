@@ -13,13 +13,14 @@ import androidx.annotation.Nullable;
 import com.atulparida.spacemate.R;
 import com.atulparida.spacemate.login_assets.LoginActivity;
 import com.atulparida.spacemate.login_assets.SplashActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.Delayed;
 
 public class SettingsFragment extends PreferenceFragment {
 
     private Preference masterNotifPreference, upcomingBookings, newSpaces, passwordChangeButton, signOutButton, deleteAccountButton, needHelpButton;
-
+    private FirebaseAuth mAuth;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -28,6 +29,7 @@ public class SettingsFragment extends PreferenceFragment {
         // below line is used to add preference
         // fragment from our xml folder.
         addPreferencesFromResource(R.xml.preferences);
+        mAuth = FirebaseAuth.getInstance();
 
         initPreferences();
         initNotificationToggles();
@@ -75,6 +77,7 @@ public class SettingsFragment extends PreferenceFragment {
         signOutButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                mAuth.signOut();
                 Intent intent = new Intent(preference.getContext(), LoginActivity.class);
                 startActivity(intent);
                 return true;

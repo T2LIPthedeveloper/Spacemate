@@ -104,7 +104,9 @@ public class ProfileActivity extends AppCompatActivity {
         //TODO: get name from Firestore instance based on user value
         emailViewer = findViewById(R.id.emailValue);
         emailViewer.setText(fAuth.getCurrentUser().getEmail());
-    }
+        //create event to update textviews
+
+        }
 
     private void initOnClickListener(ImageView itemEdit, TextView textViewer, ViewSwitcher vs, EditText text) {
         itemEdit.setOnClickListener(v -> {
