@@ -3,6 +3,7 @@
 This is the app repo for __Spacemate__, our space-booking app for SUTD.
 
 Languages used: *Java, JSON (via GSON)*
+
 External utilities used: *Google Firebase (Firestore and Firebase Authentication)*
 
 ## App Functionality ##
@@ -28,5 +29,6 @@ Using the app, the users can:
 
 ### Timeline ###
 Started development in Feb 2023.
+
 Finished development in April 2023.
 
