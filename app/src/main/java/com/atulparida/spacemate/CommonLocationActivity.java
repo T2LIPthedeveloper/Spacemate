@@ -304,8 +304,7 @@ public class CommonLocationActivity extends AppCompatActivity {
                 else {
 //                    Bundle bundle = new Bundle();
 //                    bundle.putSerializable("booking", booking);
-                    booking.setName(userEmail);
-                    DatabaseCall.makeBooking(booking, db);
+                    makeBooking();
                     Intent intent = new Intent(CommonLocationActivity.this, MainActivity.class);
 
 //                    intent.putExtras(bundle);
@@ -336,7 +335,6 @@ public class CommonLocationActivity extends AppCompatActivity {
 
     private void initUI() {
         booking = new Booking();
-        booking.setLocation(bookingLoc.getName());
         hiddenLayout = findViewById(R.id.hiddenLayout);
         hiddenLayout.setVisibility(View.GONE);
         scrollView = findViewById(R.id.main_scroll_view);
@@ -411,26 +409,26 @@ public class CommonLocationActivity extends AppCompatActivity {
         }
     }
 
-//    public void makeBooking() {
-//        CollectionReference bookingCollection = db.collection("Bookings");
-//        DocumentReference bookingRef = bookingCollection.document();
-//        booking.setName(userEmail);
-//        booking.setBookingId(bookingRef.getId());
-//
-//        bookingRef.set(booking)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d("Spacemate", "DocumentSnapshot successfully written!");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("Spacemate", "Error writing document", e);
-//                    }
-//                });
-//    }
+    public void makeBooking() {
+        CollectionReference bookingCollection = db.collection("Bookings");
+        DocumentReference bookingRef = bookingCollection.document();
+        booking.setName(userEmail);
+        booking.setBookingId(bookingRef.getId());
+
+        bookingRef.set(booking)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Spacemate", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Spacemate", "Error writing document", e);
+                    }
+                });
+    }
 }
 
 class TableAdapter extends ArrayAdapter<Table> {
